@@ -1,5 +1,6 @@
 import { useState } from "react";
 import ImageModal from "@/components/ImageModal";
+import { Button } from "@/components/ui/button";
 
 interface PortfolioImage {
   id: number;
@@ -10,19 +11,19 @@ interface PortfolioImage {
 
 const roomImages: PortfolioImage[] = [
   // Green Room
-  { id: 1, src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=1000&fit=crop", alt: "Green Room Setup", room: "Green Room" },
-  { id: 2, src: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?w=800&h=800&fit=crop", alt: "Green Room Details", room: "Green Room" },
-  { id: 3, src: "https://images.unsplash.com/photo-1616137466211-f939a420be84?w=800&h=1200&fit=crop", alt: "Green Room Ambiance", room: "Green Room" },
+  { id: 1, src: "https://static.wixstatic.com/media/d7415b9336a9ba0607ec0d~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/d7415b9336a9ba0607ec0d~mv2.jpg", alt: "Green Room", room: "Green Room" },
+  { id: 2, src: "https://static.wixstatic.com/media/634194997b26ba74b3dbef~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/634194997b26ba74b3dbef~mv2.jpg", alt: "Green Room", room: "Green Room" },
+  { id: 3, src: "https://static.wixstatic.com/media/294bbda5648ece5777225a~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/294bbda5648ece5777225a~mv2.jpg", alt: "Green Room", room: "Green Room" },
   
   // Blue Room
-  { id: 4, src: "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?w=800&h=1000&fit=crop", alt: "Blue Room Setup", room: "Blue Room" },
-  { id: 5, src: "https://images.unsplash.com/photo-1618220179428-22790b461013?w=800&h=800&fit=crop", alt: "Blue Room Interior", room: "Blue Room" },
-  { id: 6, src: "https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?w=800&h=1200&fit=crop", alt: "Blue Room Atmosphere", room: "Blue Room" },
+  { id: 4, src: "https://static.wixstatic.com/media/a44a0ebba93a66265dc74f~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/a44a0ebba93a66265dc74f~mv2.jpg", alt: "Blue Room", room: "Blue Room" },
+  { id: 5, src: "https://static.wixstatic.com/media/3e44c48b0e4fa3a55aea7a~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/3e44c48b0e4fa3a55aea7a~mv2.jpg", alt: "Blue Room", room: "Blue Room" },
+  { id: 6, src: "https://static.wixstatic.com/media/bf43d0afac90b6bbbe0563~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/bf43d0afac90b6bbbe0563~mv2.jpg", alt: "Blue Room", room: "Blue Room" },
   
   // White Room
-  { id: 7, src: "https://images.unsplash.com/photo-1616137148897-cc6d5b6f2b7d?w=800&h=1000&fit=crop", alt: "White Room Studio", room: "White Room" },
-  { id: 8, src: "https://images.unsplash.com/photo-1618221381711-42ca8ab6e908?w=800&h=800&fit=crop", alt: "White Room Minimalist", room: "White Room" },
-  { id: 9, src: "https://images.unsplash.com/photo-1616486029423-aaa4789e8c9a?w=800&h=1200&fit=crop", alt: "White Room Clean", room: "White Room" },
+  { id: 7, src: "https://static.wixstatic.com/media/8f4b449a637500047fc651~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/8f4b449a637500047fc651~mv2.jpg", alt: "White Room", room: "White Room" },
+  { id: 8, src: "https://static.wixstatic.com/media/b649ed8b43745ae8f2e262~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/b649ed8b43745ae8f2e262~mv2.jpg", alt: "White Room", room: "White Room" },
+  { id: 9, src: "https://static.wixstatic.com/media/d94f3d9b8cc4642022af04~mv2.jpg/v1/fill/w_400,h_600,al_c,q_80,usm_0.66_1.00_0.01/d94f3d9b8cc4642022af04~mv2.jpg", alt: "White Room", room: "White Room" },
 ];
 
 export default function Rooms() {
@@ -40,25 +41,19 @@ export default function Rooms() {
       <section className="py-16 md:py-24">
         <div className="container">
           <div className="mb-12 text-center">
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">Rooms</h1>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto mb-8">
-              Nos studios professionnels avec différentes ambiances pour vos séances photo.
-            </p>
+            <h1 className="text-5xl md:text-6xl font-bold mb-8">Room(s)</h1>
 
             {/* Room Filter */}
             <div className="flex flex-wrap justify-center gap-3">
               {rooms.map((room) => (
-                <button
+                <Button
                   key={room}
+                  variant={activeRoom === room ? "default" : "outline"}
                   onClick={() => setActiveRoom(room)}
-                  className={`px-6 py-2 rounded-sm text-sm font-medium transition-colors ${
-                    activeRoom === room
-                      ? "bg-accent text-accent-foreground"
-                      : "bg-secondary text-secondary-foreground hover:bg-accent/80"
-                  }`}
+                  className="capitalize"
                 >
-                  {room === "all" ? "Tous" : room}
-                </button>
+                  {room}
+                </Button>
               ))}
             </div>
           </div>
@@ -76,11 +71,7 @@ export default function Rooms() {
                   className="w-full h-auto transition-transform duration-500 group-hover:scale-105"
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300">
-                  <div className="absolute bottom-4 left-4 bg-black/70 text-white px-3 py-1 rounded-sm text-sm opacity-0 group-hover:opacity-100 transition-opacity">
-                    {image.room}
-                  </div>
-                </div>
+                <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-colors duration-300" />
               </div>
             ))}
           </div>
@@ -89,7 +80,7 @@ export default function Rooms() {
 
       {selectedImage && (
         <ImageModal
-          image={{ ...selectedImage, category: selectedImage.room }}
+          image={selectedImage}
           onClose={() => setSelectedImage(null)}
         />
       )}
